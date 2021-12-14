@@ -8,19 +8,14 @@ public class Application {
 		// Definition of the company
 		Company UbDriver = new Company();
 		
-		// Adding employees 
-		Employee e1 = new Employee("Jade", 55, 7.1, CyclistType.BEGINNER);
-		Employee e2 = new Employee("Anna", 67, 7.4, CyclistType.EXPERT);
-		Employee e3 = new Employee("Blaise", 74, 7.25, CyclistType.ATHLETIC);
-		Employee e4 = new Employee("Alfred", 80, 7.2, CyclistType.NONE);
-		Employee e5 = new Employee("Tiago", 62, 7.2, CyclistType.NONE);
-		
-		Bike v1 = new Bike("Cyclou", 450);
-		Bike v2 = new Bike("Vavite", 500);
-		Scooter v3 = new Scooter("Yamama", 3500, 300, 50, 7.5);
-		Scooter v4 = new Scooter("Vespo", 2500, 125, 30, 5.5);
-		Scooter v5 = new Scooter("Piagigi", 2000, 150, 35, 6);
-		
+		// Adding default employees
+		for(Employee e : Param.defaultEmployee) {
+			UbDriver.addEmployee(e);
+		}
+		// Adding default Vehicle
+		for(Vehicle v: Param.defaultVehicle) {
+			UbDriver.addVehicle(v);
+		}
 		
 		Point p1 = new Point(0,0);  
 		Point p2 = new Point(500,0);
@@ -37,9 +32,9 @@ public class Application {
 		*/
 		
 		
-		Delivery d1 = new Delivery(5, v1, e1);
-		Delivery d2 = new Delivery(5, v1, e4);
-		Delivery d3 = new Delivery(5, v5, e3);
+		Delivery d1 = new Delivery(5, UbDriver.getListVehicle().get(0), UbDriver.getListEmployee().get(0));
+		Delivery d2 = new Delivery(5, UbDriver.getListVehicle().get(0), UbDriver.getListEmployee().get(3));
+		Delivery d3 = new Delivery(5, UbDriver.getListVehicle().get(4), UbDriver.getListEmployee().get(2));
 		
 		// Will be done with the graphic interface when creating a delivery
 		d1.addPoint(p1);
