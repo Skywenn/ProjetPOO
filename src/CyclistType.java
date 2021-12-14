@@ -1,6 +1,6 @@
 
 public enum CyclistType {
-	BEGINNER(10), SPORTIF(15), EXPERT(20); 
+	BEGINNER(10), ATHLETIC(15), EXPERT(20), NONE(0); 
 	
 	private double speed;
 	
@@ -8,7 +8,7 @@ public enum CyclistType {
 		this.speed = speed;
 	}
 	
-	public double getCyclistSpeed() {
+	public double getTypeSpeed() {
 		return this.speed;
 	}
 }

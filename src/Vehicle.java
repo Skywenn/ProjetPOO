@@ -2,17 +2,15 @@
 public abstract class Vehicle {
 	
 	private String name;
-	private double price;
-	private double emission;
+	protected double price;
+	protected double emission;
 	private double payLoad;
-	private double cost;
 	
-	public Vehicle(String name, double price, double emission, double payLoad, double cost) {
+	public Vehicle(String name, double price, double emission, double payLoad) {
 		this.name = name;
 		this.price = price;
 		this.emission = emission;
 		this.payLoad = payLoad;
-		this.cost = cost;
 	}
 	
 
@@ -31,9 +29,7 @@ public abstract class Vehicle {
 		return payLoad;
 	}
 	
-	public double getCost() {
-		return cost;
-	}
+	public abstract double getCost();
 	
 	public abstract double getAvgSpeed(Employee e);
 	
