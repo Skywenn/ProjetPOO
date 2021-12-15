@@ -9,23 +9,23 @@ public class Application {
 		// Test
 		
 		// Definition of the company
-		Company UbDriver = new Company();
+		Company company = new Company();
 		
 		// Adding default employees
 		for(Employee e : Param.defaultEmployee) {
-			UbDriver.addEmployee(e);
+			company.addEmployee(e);
 		}
 		// Adding default Vehicle
 		for(Vehicle v: Param.defaultVehicle) {
-			UbDriver.addVehicle(v);
+			company.addVehicle(v);
 		}
 		
 		Point p1 = new Point(0,0);  
 		Point p2 = new Point(500,0);
 		 
-		Delivery d1 = new Delivery(5, UbDriver.getListVehicle().get(0), UbDriver.getListEmployee().get(0));
-		Delivery d2 = new Delivery(5, UbDriver.getListVehicle().get(0), UbDriver.getListEmployee().get(3));
-		Delivery d3 = new Delivery(5, UbDriver.getListVehicle().get(4), UbDriver.getListEmployee().get(2));
+		Delivery d1 = new Delivery(5, company.getListVehicle().get(0), company.getListEmployee().get(0));
+		Delivery d2 = new Delivery(5, company.getListVehicle().get(0), company.getListEmployee().get(3));
+		Delivery d3 = new Delivery(5, company.getListVehicle().get(4), company.getListEmployee().get(2));
 		
 		// Will be done with the graphic interface when creating a delivery
 		d1.addPoint(p1);
@@ -39,20 +39,20 @@ public class Application {
 		System.out.println(d2.PrettyPrint());
 		System.out.println(d3.PrettyPrint());
 		
-		UbDriver.addDelivery(d1);
-		UbDriver.addDelivery(d2);
-		UbDriver.addDelivery(d3);
+		company.addDelivery(d1);
+		company.addDelivery(d2);
+		company.addDelivery(d3);
 		
-		for(Delivery d : UbDriver.getListDelivery()) {
+		for(Delivery d : company.getListDelivery()) {
 			System.out.println(" Possible ? : " + d.isPossible());
 		}
 		
-		System.out.println(UbDriver.getListDelivery());
-		UbDriver.deleteWrongDelivery();
-		UbDriver.bestDelivery();
+		System.out.println(company.getListDelivery());
+		company.deleteWrongDelivery();
+		company.bestDelivery();
 		
-		System.out.println(UbDriver.getListDelivery());
-		System.out.println(UbDriver.getBestDelivery().PrettyPrint());
+		System.out.println(company.getListDelivery());
+		System.out.println(company.getBestDelivery().PrettyPrint());
 		
 		//---------------------------------------------------------------------------------
 		// Partie graphique
@@ -60,7 +60,7 @@ public class Application {
 		// Apply LookAndField
 		UIManager.setLookAndFeel(new NimbusLookAndFeel());
 
-		Window view = new Window();
+		Window view = new Window(company);
 		view.setVisible(true);
 
 	}
