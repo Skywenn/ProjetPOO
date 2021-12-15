@@ -1,7 +1,10 @@
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 public class Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnsupportedLookAndFeelException {
 		
 		// Test
 		
@@ -20,18 +23,6 @@ public class Application {
 		Point p1 = new Point(0,0);  
 		Point p2 = new Point(500,0);
 		 
-		/*
-		System.out.println(v3.getCost());
-		System.out.println(v1.getCost());
-		System.out.println(CyclistType.BEGINNER.getTypeSpeed());
-		System.out.println(e1.getCyclistSpeed());
-		System.out.println(v1.getAvgSpeed(e4)); // Exception to do
-		System.out.println(v1.getAvgSpeed(e3)); 
-		System.out.println(v4.getAvgSpeed(e3)); 
-		System.out.println(v4.getAvgSpeed(e5));
-		*/
-		
-		
 		Delivery d1 = new Delivery(5, UbDriver.getListVehicle().get(0), UbDriver.getListEmployee().get(0));
 		Delivery d2 = new Delivery(5, UbDriver.getListVehicle().get(0), UbDriver.getListEmployee().get(3));
 		Delivery d3 = new Delivery(5, UbDriver.getListVehicle().get(4), UbDriver.getListEmployee().get(2));
@@ -62,5 +53,15 @@ public class Application {
 		
 		System.out.println(UbDriver.getListDelivery());
 		System.out.println(UbDriver.getBestDelivery().PrettyPrint());
+		
+		//---------------------------------------------------------------------------------
+		// Partie graphique
+		
+		// Apply LookAndField
+		UIManager.setLookAndFeel(new NimbusLookAndFeel());
+
+		Window view = new Window();
+		view.setVisible(true);
+
 	}
 }
