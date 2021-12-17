@@ -1,6 +1,17 @@
+package defaultPackage;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+
+import Interface.DeliveryMan;
+import Interface.InfoWindow;
+import Interface.MapWindow;
+import Interface.NewPath;
+import Interface.Path;
 
 public class Application {
 
@@ -24,16 +35,12 @@ public class Application {
 		Point p2 = new Point(500,0);
 		 
 		Delivery d1 = new Delivery(5, company.getListVehicle().get(0), company.getListEmployee().get(0));
-		Delivery d2 = new Delivery(5, company.getListVehicle().get(0), company.getListEmployee().get(3));
+		Delivery d2 = new Delivery(5, company.getListVehicle().get(3), company.getListEmployee().get(3));
 		Delivery d3 = new Delivery(5, company.getListVehicle().get(4), company.getListEmployee().get(2));
+		d1.setTrip(Param.defaultTrip);
+		d2.setTrip(Param.defaultTrip);
+		d3.setTrip(Param.defaultTrip);
 		
-		// Will be done with the graphic interface when creating a delivery
-		d1.addPoint(p1);
-		d1.addPoint(p2);
-		d2.addPoint(p1);
-		d2.addPoint(p2);
-		d3.addPoint(p1);
-		d3.addPoint(p2);
 		
 		System.out.println(d1.PrettyPrint());
 		System.out.println(d2.PrettyPrint());
@@ -54,14 +61,33 @@ public class Application {
 		System.out.println(company.getListDelivery());
 		System.out.println(company.getBestDelivery().PrettyPrint());
 		
+		company.bestDelivery();
+		company.getNewDelivery().setTrip(new ArrayList<>(Arrays.asList(Param.base, Param.destination)));
+		
 		//---------------------------------------------------------------------------------
 		// Partie graphique
 		
 		// Apply LookAndField
 		UIManager.setLookAndFeel(new NimbusLookAndFeel());
-
-		Window view = new Window(company);
-		view.setVisible(true);
-
+		
+		Path path = new Path(company);
+		NewPath newPath = new NewPath(company);
+		
+		SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				InfoWindow info = new InfoWindow(company);
+				info.setVisible(true);
+				
+				MapWindow map = new MapWindow(company);
+				map.addDrawable(path);
+				path.setWindow(map);
+				
+				map.addDrawable(newPath);
+				newPath.setWindow(map);		
+				
+				map.setVisible(true);
+			}
+		});
+		
 	}
 }
